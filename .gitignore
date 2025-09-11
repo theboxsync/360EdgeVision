@@ -1,0 +1,29 @@
+# Flutter/Dart/Pub related
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+
+# Build outputs
+build/
+ios/Pods/
+android/.gradle/
+android/app/build/
+
+# Generated files
+.flutter-plugins
+.flutter-plugins-dependencies
+.generated/
+.melos_tool/
+
+# IDE related
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Others
+coverage/

@@ -1,0 +1,28 @@
+import 'package:flutter/material.dart';
+
+const color000000w70030 = TextStyle(color: Color(0xFF000000), fontWeight: FontWeight.w700, fontSize: 30, fontFamily: "Outfit");
+const colorFF9800w70030 = TextStyle(color: Color(0xFFFF9800), fontWeight: FontWeight.w700, fontSize: 30, fontFamily: "Outfit");
+const colorFFFFFFw70030 = TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.w700, fontSize: 30, fontFamily: "Outfit");
+const colorFFFFFFw40030 = TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.w400, fontSize: 30, fontFamily: "Outfit");
+const colorFFFFFFw40035 = TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.w400, fontSize: 35, fontFamily: "Outfit");
+const colorFFFFFFw30040 = TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.w300, fontSize: 40, fontFamily: "Outfit");
+const colorFFFFFFw40020 = TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.w400, fontSize: 20, fontFamily: "Outfit");
+const colorFFFFFFw40012 = TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.w400, fontSize: 12, fontFamily: "Outfit");
+const color000000w60025 = TextStyle(color: Color(0xFF000000), fontWeight: FontWeight.w600, fontSize: 25, fontFamily: "Outfit");
+const colorFFFFFFw60025 = TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.w600, fontSize: 25, fontFamily: "Outfit");
+const color000000w40025 = TextStyle(color: Color(0xFF000000), fontWeight: FontWeight.w400, fontSize: 25, fontFamily: "Outfit");
+const colorFFFFFFw40025 = TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.w400, fontSize: 25, fontFamily: "Outfit");
+const color000000w60020 = TextStyle(color: Color(0xFF000000), fontWeight: FontWeight.w600, fontSize: 20, fontFamily: "Outfit");
+const color000000w40020 = TextStyle(color: Color(0xFF000000), fontWeight: FontWeight.w400, fontSize: 20, fontFamily: "Outfit");
+const color000000w20020 = TextStyle(color: Color(0xFF000000), fontWeight: FontWeight.w200, fontSize: 20, fontFamily: "Outfit");
+const color000000w40023 = TextStyle(color: Color(0xFF000000), fontWeight: FontWeight.w400, fontSize: 23, fontFamily: "Outfit");
+const colorFF9800w60020 = TextStyle(color: Color(0xFFFF9800), fontWeight: FontWeight.w600, fontSize: 25, fontFamily: "Outfit");
+const colorFF9800w40030 = TextStyle(color: Color(0xFFFF9800), fontWeight: FontWeight.w400, fontSize: 30, fontFamily: "Outfit");
+const color000000w40015 = TextStyle(color: Color(0xFF000000), fontWeight: FontWeight.w400, fontSize: 15, fontFamily: "Outfit");
+const color000000w70015 = TextStyle(color: Color(0xFF000000), fontWeight: FontWeight.w700, fontSize: 15, fontFamily: "Outfit");
+const color000000w40010 = TextStyle(color: Color(0xFF000000), fontWeight: FontWeight.w400, fontSize: 10, fontFamily: "Outfit");
+const colorFFFFFFw40015 = TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWeight.w400, fontSize: 15, fontFamily: "Outfit");
+// const color000000w60020 = TextStyle(color: Color(0xFF000000), fontWeight: FontWeight.w600, fontSize: 20,fontFamily: "Outfit");
+const colorFF9800w40015 = TextStyle(color: Color(0xFFFF9800), fontWeight: FontWeight.w400, fontSize: 15, fontFamily: "Outfit");
+const color808080w40015 = TextStyle(color: Color(0xFF808080), fontWeight: FontWeight.w400, fontSize: 15, fontFamily: "Outfit");
+const color000000w50020 = TextStyle(color: Color(0xFF000000), fontWeight: FontWeight.w500, fontSize: 20, letterSpacing: 2, fontFamily: "Outfit");
