@@ -1,29 +1,49 @@
-# Flutter/Dart/Pub related
+# Flutter/Dart
 .dart_tool/
 .packages
 .pub-cache/
 .pub/
-
-# Build outputs
-build/
-ios/Pods/
-android/.gradle/
-android/app/build/
-
-# Generated files
 .flutter-plugins
 .flutter-plugins-dependencies
 .generated/
 .melos_tool/
 
-# IDE related
+# Build outputs
+build/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Pods/
+ios/Runner.xcworkspace/
+ios/Flutter/Flutter.podspec
+ios/Flutter/Flutter.xcframework
+android/.gradle/
+android/app/build/
+
+# IntelliJ / Android Studio / VS Code
 .idea/
 .vscode/
 *.iml
 
-# OS files
+# OS generated
 .DS_Store
 Thumbs.db
 
-# Others
+# Logs
+*.log
+
+# Coverage
 coverage/
+
+# Misc
+*.lock
+*.tmp
+*.swp
+*.bak
+*.orig
+
+# Firebase / Google Services (if you want to ignore)
+# google-services.json
+# GoogleService-Info.plist
+
+# Optional: Ignore sensitive API keys or config files
+# secrets.yaml
