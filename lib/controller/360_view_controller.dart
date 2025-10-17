@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:get/get.dart';
+import 'package:tripolystudionew/common_widget/hotspot_class.dart';
 import 'package:tripolystudionew/models/interior_model.dart';
 import 'package:tripolystudionew/models/music_model.dart';
 
@@ -101,6 +102,7 @@ class ViewController extends GetxController {
 
   RxBool getPlanHotspotLoader = false.obs;
   final RxList<HotspotModel> getPlanHotspotData = <HotspotModel>[].obs;
+  final RxList<HotspotPosition> getPlanHotspotDataList = <HotspotPosition>[].obs;
 
   getPlanHotspotApiCall(String? planId) async {
     await apiServiceCall(
@@ -108,8 +110,10 @@ class ViewController extends GetxController {
       serviceUrl: "https://360edgevision.digitaltripolystudio.com/view/fetch_plan_hotspots.php?plan_id=$planId",
       success: (dio.Response<dynamic> response) {
         print("Success");
-        getPlanHotspotData.value = (jsonDecode(response.data) as List).map((e) => HotspotModel.fromJson(e)).toList();
         print(response.data);
+        getPlanHotspotData.value = (jsonDecode(response.data) as List).map((e) => HotspotModel.fromJson(e)).toList();
+        print(getPlanHotspotData);
+        print("hello.........");
       },
       error: (dio.Response<dynamic> response) {},
       isStopAction: true.obs,

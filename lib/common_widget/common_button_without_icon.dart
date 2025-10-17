@@ -4,7 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:tripolystudionew/utility/colors.dart';
 import 'package:tripolystudionew/utility/text_style.dart';
 
-class CommonButton extends StatefulWidget {
+class CommonButtonWithoutIcon extends StatefulWidget {
   final String title;
   final Widget? icon;
   final EdgeInsetsGeometry? padding;
@@ -23,7 +23,7 @@ class CommonButton extends StatefulWidget {
   final Color? broderColor;
   final LinearGradient? gradient;
 
-  const CommonButton({
+  const CommonButtonWithoutIcon({
     super.key,
     required this.isLoading,
     required this.title,
@@ -45,10 +45,10 @@ class CommonButton extends StatefulWidget {
   });
 
   @override
-  State<CommonButton> createState() => _CommonButtonState();
+  State<CommonButtonWithoutIcon> createState() => _CommonButtonWithoutIconState();
 }
 
-class _CommonButtonState extends State<CommonButton> {
+class _CommonButtonWithoutIconState extends State<CommonButtonWithoutIcon> {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -77,16 +77,7 @@ class _CommonButtonState extends State<CommonButton> {
             padding: widget.padding ?? const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
             child: widget.isLoading
                 ? SizedBox(height: 20, child: SpinKitThreeBounce(color: widget.spinColor ?? color000000, size: 30.0))
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(widget.title, style: widget.style ?? color000000w50012),
-                      const SizedBox(width: 10),
-                      widget.isArrow == true
-                          ? const SizedBox()
-                          : Image.asset("assets/icon/arrow_right.png", scale: 1, color: widget.iconColor ?? color000000),
-                    ],
-                  ),
+                : Center(child: Text(widget.title, style: widget.style ?? color000000w50012)),
           ),
         ),
       ),

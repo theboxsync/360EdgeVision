@@ -4,6 +4,7 @@
 <dict>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string>This app needs location access to check Wi-Fi information.</string>
+    <key>NSMotionUsageDescription</key>loadFlutterAssetevice motion.</string>
     <key>NSMotionUsageDescription</key>
     <string>Used to enable immersive VR look control with your headset.</string>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

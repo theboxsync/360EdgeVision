@@ -1,17 +1,21 @@
 class HotspotPosition {
-  final int id;
-  final double x; // percentage
-  final double y; // percentage
-  final int linkedImageId;
+  final String? id;
+  final double? x; // percentage (0–100)
+  final double? y; // percentage (0–100)
+  final String? linkedImageId;
 
-  HotspotPosition({required this.id, required this.x, required this.y, required this.linkedImageId});
+  HotspotPosition({this.id, this.x, this.y, this.linkedImageId});
 
   factory HotspotPosition.fromJson(Map<String, dynamic> json) {
     return HotspotPosition(
-      id: json['id'],
-      x: json['x'] * 0.01, // convert percentage to 0-1 scale
-      y: json['y'] * 0.01,
-      linkedImageId: json['linked_image_id'],
+      id: json['id'].toString(),
+      x: (json['x'] as num).toDouble(),
+      y: (json['y'] as num).toDouble(),
+      linkedImageId: json['linked_image_id'].toString(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {'id': id, 'x': x, 'y': y, 'linked_image_id': linkedImageId};
   }
 }

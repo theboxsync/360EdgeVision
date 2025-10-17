@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:tripolystudionew/utility/colors.dart';
 import 'package:tripolystudionew/utility/text_style.dart';
@@ -15,6 +16,12 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
+  void initState() {
+    // TODO: implement initState
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: color000000,
@@ -24,9 +31,8 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset("assets/icon/splash_logo.jpeg", scale: 3),
               SizedBox(
-                height: 100, // enough height to fit all animated texts
+                height: 100,
                 child: AnimatedTextKit(
                   onFinished: () {
                     Get.offAll(() => TripolyScreenNavigationBar(), transition: Transition.downToUp);

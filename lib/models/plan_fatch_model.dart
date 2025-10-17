@@ -11,7 +11,7 @@ String planFetchModelToJson(PlanFetchModel data) => json.encode(data.toJson());
 class PlanFetchModel {
   bool? success;
   String? image;
-  String? planId;
+  int? planId;
 
   PlanFetchModel({this.success, this.image, this.planId});
 

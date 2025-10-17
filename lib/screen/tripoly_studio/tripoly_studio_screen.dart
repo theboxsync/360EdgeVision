@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../common_widget/building_site_navigation_bar.dart';
-import '../../common_widget/common_button.dart';
+import '../../common_widget/common_button_without_icon.dart';
 import '../../controller/site_project_controller.dart';
 import '../../utility/colors.dart';
 import '../../utility/text_style.dart';
@@ -106,12 +106,74 @@ class _TripolyStudioScreenState extends State<TripolyStudioScreen> {
                                   SizedBox(height: 20),
                                   Text(currentItem.projectDescription.toString(), style: color000000w40015),
                                   SizedBox(height: 45),
-                                  CommonButton(
-                                    isLoading: SiteProjectController.to.siteProjectLoader.value,
-                                    title: "VIEW PROJECT",
-                                    onPressed: () {
-                                      Get.to(() => BuildingSiteNavigationBar(projectDetails: currentItem));
-                                    },
+                                  Row(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: controllerX.tripolyCurrentIndex.value > 0
+                                            ? () {
+                                                _carouselController.animateToPage(
+                                                  controllerX.tripolyCurrentIndex.value - 1,
+                                                  duration: Duration(milliseconds: 300),
+                                                  curve: Curves.ease,
+                                                );
+                                              }
+                                            : null,
+                                        child: Container(
+                                          height: 45,
+                                          width: 45,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: color000000),
+                                            borderRadius: BorderRadius.circular(50),
+                                            color: controllerX.tripolyCurrentIndex.value <= 0 ? colorEEEEEE : color000000,
+                                          ),
+                                          child: Image.asset(
+                                            "assets/icon/arrow.png",
+                                            scale: 3,
+                                            color: controllerX.tripolyCurrentIndex.value <= 0 ? color000000 : colorFF9800,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(width: 10),
+                                      Expanded(
+                                        child: CommonButtonWithoutIcon(
+                                          isLoading: SiteProjectController.to.siteProjectLoader.value,
+                                          title: "VIEW PROJECT",
+                                          onPressed: () {
+                                            Get.to(() => BuildingSiteNavigationBar(projectDetails: currentItem));
+                                          },
+                                        ),
+                                      ),
+                                      SizedBox(width: 10),
+                                      GestureDetector(
+                                        onTap: controllerX.tripolyCurrentIndex.value < SiteProjectController.to.siteProjectData.length - 1
+                                            ? () {
+                                                _carouselController.animateToPage(
+                                                  controllerX.tripolyCurrentIndex.value + 1,
+                                                  duration: Duration(milliseconds: 300),
+                                                  curve: Curves.ease,
+                                                );
+                                              }
+                                            : null,
+                                        child: Container(
+                                          height: 45,
+                                          width: 45,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: color000000),
+                                            borderRadius: BorderRadius.circular(50),
+                                            color: controllerX.tripolyCurrentIndex.value == SiteProjectController.to.siteProjectData.length - 1
+                                                ? colorEEEEEE
+                                                : color000000,
+                                          ),
+                                          child: Image.asset(
+                                            "assets/icon/right-arrow.png",
+                                            scale: 3,
+                                            color: controllerX.tripolyCurrentIndex.value == SiteProjectController.to.siteProjectData.length - 1
+                                                ? color000000
+                                                : colorFF9800,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   SizedBox(height: 25),
                                 ],
@@ -120,79 +182,79 @@ class _TripolyStudioScreenState extends State<TripolyStudioScreen> {
                           );
                         }),
                         const SizedBox(height: 40),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 15),
-                              child: Text(
-                                "${controllerX.tripolyCurrentIndex.value + 1} / ${SiteProjectController.to.siteProjectData.length}",
-                                style: color000000w40020,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 15),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  GestureDetector(
-                                    onTap: controllerX.tripolyCurrentIndex.value > 0
-                                        ? () {
-                                            _carouselController.animateToPage(
-                                              controllerX.tripolyCurrentIndex.value - 1,
-                                              duration: Duration(milliseconds: 300),
-                                              curve: Curves.ease,
-                                            );
-                                          }
-                                        : null,
-                                    child: Container(
-                                      height: 60,
-                                      width: 60,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(50),
-                                        color: controllerX.tripolyCurrentIndex.value <= 0 ? colorEEEEEE : color000000,
-                                      ),
-                                      child: Image.asset(
-                                        "assets/icon/arrow.png",
-                                        scale: 3,
-                                        color: controllerX.tripolyCurrentIndex.value <= 0 ? colorFFFFFF : colorFF9800,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 20),
-                                  GestureDetector(
-                                    onTap: controllerX.tripolyCurrentIndex.value < SiteProjectController.to.siteProjectData.length - 1
-                                        ? () {
-                                            _carouselController.animateToPage(
-                                              controllerX.tripolyCurrentIndex.value + 1,
-                                              duration: Duration(milliseconds: 300),
-                                              curve: Curves.ease,
-                                            );
-                                          }
-                                        : null,
-                                    child: Container(
-                                      height: 60,
-                                      width: 60,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(50),
-                                        color: controllerX.tripolyCurrentIndex.value == SiteProjectController.to.siteProjectData.length - 1
-                                            ? colorEEEEEE
-                                            : color000000,
-                                      ),
-                                      child: Image.asset(
-                                        "assets/icon/right-arrow.png",
-                                        scale: 3,
-                                        color: controllerX.tripolyCurrentIndex.value == SiteProjectController.to.siteProjectData.length - 1
-                                            ? colorFFFFFF
-                                            : colorFF9800,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //   children: [
+                        //     Padding(
+                        //       padding: const EdgeInsets.symmetric(horizontal: 15),
+                        //       child: Text(
+                        //         "${controllerX.tripolyCurrentIndex.value + 1} / ${SiteProjectController.to.siteProjectData.length}",
+                        //         style: color000000w40020,
+                        //       ),
+                        //     ),
+                        //     Padding(
+                        //       padding: const EdgeInsets.symmetric(horizontal: 15),
+                        //       child: Row(
+                        //         mainAxisAlignment: MainAxisAlignment.center,
+                        //         children: [
+                        //           GestureDetector(
+                        //             onTap: controllerX.tripolyCurrentIndex.value > 0
+                        //                 ? () {
+                        //                     _carouselController.animateToPage(
+                        //                       controllerX.tripolyCurrentIndex.value - 1,
+                        //                       duration: Duration(milliseconds: 300),
+                        //                       curve: Curves.ease,
+                        //                     );
+                        //                   }
+                        //                 : null,
+                        //             child: Container(
+                        //               height: 60,
+                        //               width: 60,
+                        //               decoration: BoxDecoration(
+                        //                 borderRadius: BorderRadius.circular(50),
+                        //                 color: controllerX.tripolyCurrentIndex.value <= 0 ? colorEEEEEE : color000000,
+                        //               ),
+                        //               child: Image.asset(
+                        //                 "assets/icon/arrow.png",
+                        //                 scale: 3,
+                        //                 color: controllerX.tripolyCurrentIndex.value <= 0 ? colorFFFFFF : colorFF9800,
+                        //               ),
+                        //             ),
+                        //           ),
+                        //           const SizedBox(width: 20),
+                        //           GestureDetector(
+                        //             onTap: controllerX.tripolyCurrentIndex.value < SiteProjectController.to.siteProjectData.length - 1
+                        //                 ? () {
+                        //                     _carouselController.animateToPage(
+                        //                       controllerX.tripolyCurrentIndex.value + 1,
+                        //                       duration: Duration(milliseconds: 300),
+                        //                       curve: Curves.ease,
+                        //                     );
+                        //                   }
+                        //                 : null,
+                        //             child: Container(
+                        //               height: 60,
+                        //               width: 60,
+                        //               decoration: BoxDecoration(
+                        //                 borderRadius: BorderRadius.circular(50),
+                        //                 color: controllerX.tripolyCurrentIndex.value == SiteProjectController.to.siteProjectData.length - 1
+                        //                     ? colorEEEEEE
+                        //                     : color000000,
+                        //               ),
+                        //               child: Image.asset(
+                        //                 "assets/icon/right-arrow.png",
+                        //                 scale: 3,
+                        //                 color: controllerX.tripolyCurrentIndex.value == SiteProjectController.to.siteProjectData.length - 1
+                        //                     ? colorFFFFFF
+                        //                     : colorFF9800,
+                        //               ),
+                        //             ),
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                       ],
                     );
             }),

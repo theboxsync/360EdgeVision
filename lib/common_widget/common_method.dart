@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../api_call/api_config.dart';
 import '../utility/colors.dart';
@@ -80,4 +81,12 @@ showSnackBar({required String title, required String message}) {
     //boxShadows: <BoxShadow>[BoxShadow(color: Colors.black12.withOpacity(0.15), blurRadius: 16)],
     duration: const Duration(seconds: 4),
   );
+}
+
+Future<void> openSocialLinkIn(String url) async {
+  final Uri uri = Uri.parse(url);
+
+  if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+    throw 'Could not launch $url';
+  }
 }

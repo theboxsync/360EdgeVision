@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../common_widget/common_method.dart';
 import '../../utility/colors.dart';
 import '../../utility/text_style.dart';
 
@@ -50,111 +50,166 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                   style: colorFFFFFFw40015,
                 ),
                 SizedBox(height: 20),
-                Container(
-                      decoration: BoxDecoration(
-                        color: color000000,
-                        border: Border.all(color: colorFF9800, width: 2),
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Contact Us", style: colorFFFFFFw40020),
-                            SizedBox(height: 15),
-                            GestureDetector(
-                              onTap: () async {
-                                //for direct phone call...............
-                                // const number = '9898869160'; //set the number here
-                                // await FlutterPhoneDirectCaller.callNumber(number);
+                Text("Tripoly Studio", style: GoogleFonts.raleway(textStyle: colorFFFFFFw60025)),
+                SizedBox(height: 20),
+                GestureDetector(
+                  onTap: () {
+                    openSocialLinkIn("https://www.tripolystudio.com/");
+                  },
+                  child: Row(
+                    children: [
+                      Image.asset("assets/icon/www.png", scale: 3),
+                      SizedBox(width: 5),
+                      Text(" www.tripolystudio.com", style: colorFFFFFFw40012),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        openSocialLinkIn("https://www.facebook.com/tripolystudiopvtltd");
+                      },
+                      child: Image.asset("assets/icon/facebook.png", scale: 3),
+                    ),
+                    SizedBox(width: 15),
+                    GestureDetector(
+                      onTap: () {
+                        openSocialLinkIn("https://www.instagram.com/tripolystudio__official/");
+                      },
+                      child: Image.asset("assets/icon/instagram.png", scale: 3),
+                    ),
 
-                                /// for open in phone app........................
-                                final Uri phoneUri = Uri(scheme: 'tel', path: '+91 9898869160');
-                                await launchUrl(phoneUri, mode: LaunchMode.externalApplication);
-                              },
-                              child: Row(
-                                children: [
-                                  Image.asset("assets/icon/phone_logo.png", scale: 3),
-                                  SizedBox(width: 5),
-                                  Text("+91 9898869160", style: colorFFFFFFw40012),
-                                ],
-                              ),
-                            ),
-                            SizedBox(height: 15),
-                          ],
-                        ),
-                      ),
-                    )
-                    .animate()
-                    .move(
-                      duration: 1000.ms,
-                      begin: const Offset(-200, 0), // from left
-                      end: Offset.zero,
-                      curve: Curves.easeOut,
-                    )
-                    .fadeIn(duration: 1000.ms),
-                SizedBox(height: 10),
-                Container(
-                      decoration: BoxDecoration(
-                        color: color000000,
-                        border: Border.all(color: colorFF9800, width: 2),
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Email", style: colorFFFFFFw40020),
-                            SizedBox(height: 15),
-                            GestureDetector(
-                              onTap: () async {
-                                final String email = 'info@tripolystudio.com';
-                                final Uri emailUri = Uri(scheme: 'mailto', path: email);
-                                await launchUrl(emailUri);
-                              },
-                              child: Row(
-                                children: [
-                                  Image.asset("assets/icon/email_logo.png", scale: 3),
-                                  SizedBox(width: 5),
-                                  Text("info@tripolystudio.com", style: colorFFFFFFw40012),
-                                ],
-                              ),
-                            ),
-                            SizedBox(width: 15),
-                          ],
-                        ),
-                      ),
-                    )
-                    .animate()
-                    .move(
-                      duration: 1000.ms,
-                      begin: const Offset(-200, 0), // from left
-                      end: Offset.zero,
-                      curve: Curves.easeOut,
-                    )
-                    .fadeIn(duration: 1000.ms),
+                    SizedBox(width: 15),
+                    GestureDetector(
+                      onTap: () {
+                        openSocialLinkIn("https://www.youtube.com/user/tripolystudio");
+                      },
+                      child: Image.asset("assets/icon/youtube.png", scale: 3),
+                    ),
+
+                    SizedBox(width: 15),
+                    GestureDetector(
+                      onTap: () {
+                        openSocialLinkIn("https://www.behance.net/Tripolystudio1717");
+                      },
+                      child: Image.asset("assets/icon/behance.png", scale: 4),
+                    ),
+
+                    SizedBox(width: 15),
+                    GestureDetector(
+                      onTap: () {
+                        openSocialLinkIn("https://in.pinterest.com/studiotripoly/");
+                      },
+                      child: Image.asset("assets/icon/pinterest.png", scale: 3),
+                    ),
+
+                    SizedBox(width: 15),
+                    GestureDetector(
+                      onTap: () {
+                        openSocialLinkIn("https://www.linkedin.com/company/tripoly-studio-private-limited/");
+                      },
+                      child: Image.asset("assets/icon/linkedin.png", scale: 3),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Text("Digital Tripoly Studio", style: GoogleFonts.raleway(textStyle: colorFFFFFFw60025)),
+                SizedBox(height: 20),
+                GestureDetector(
+                  onTap: () {
+                    openSocialLinkIn("https://www.digitaltripolystudio.com/");
+                  },
+                  child: Row(
+                    children: [
+                      Image.asset("assets/icon/www.png", scale: 3),
+                      SizedBox(width: 5),
+                      Text("www.digitaltripolystudio.com", style: colorFFFFFFw40012),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        openSocialLinkIn("https://www.facebook.com/digitaltripolystudio/");
+                      },
+                      child: Image.asset("assets/icon/facebook.png", scale: 3),
+                    ),
+                    SizedBox(width: 15),
+                    GestureDetector(
+                      onTap: () {
+                        openSocialLinkIn("https://www.instagram.com/digitaltripolystudio/");
+                      },
+                      child: Image.asset("assets/icon/instagram.png", scale: 3),
+                    ),
+                    SizedBox(width: 15),
+                    GestureDetector(
+                      onTap: () {
+                        openSocialLinkIn("https://www.linkedin.com/company/digitaltripolystudio");
+                      },
+                      child: Image.asset("assets/icon/linkedin.png", scale: 3),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Text("Contact Us", style: GoogleFonts.raleway(textStyle: colorFFFFFFw60025)),
+                SizedBox(height: 15),
+                GestureDetector(
+                  onTap: () async {
+                    final Uri phoneUri = Uri(scheme: 'tel', path: '+91 9898869160');
+                    await launchUrl(phoneUri, mode: LaunchMode.externalApplication);
+                  },
+                  child: Row(
+                    children: [
+                      Image.asset("assets/icon/phone_logo.png", scale: 3),
+                      SizedBox(width: 5),
+                      Text("+91 9898869160", style: colorFFFFFFw40012),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 15),
+                Text("Email", style: GoogleFonts.raleway(textStyle: colorFFFFFFw60025)),
+                SizedBox(height: 15),
+                GestureDetector(
+                  onTap: () async {
+                    final String email = 'info@tripolystudio.com';
+                    final Uri emailUri = Uri(scheme: 'mailto', path: email);
+                    await launchUrl(emailUri);
+                  },
+                  child: Row(
+                    children: [
+                      Image.asset("assets/icon/email_logo.png", scale: 3),
+                      SizedBox(width: 5),
+                      Text("info@tripolystudio.com", style: colorFFFFFFw40012),
+                    ],
+                  ),
+                ),
+                SizedBox(width: 15),
                 SizedBox(height: 20),
                 Text("Branches", style: GoogleFonts.raleway(textStyle: colorFFFFFFw60025)),
                 SizedBox(height: 20),
                 SizedBox(
                   height: 30,
-                  child: ListView.builder(
-                    itemCount: branchList.length,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => Row(
-                      children: [
-                        Text(branchList[index], style: colorFF9800w40015),
-                        SizedBox(width: 5),
-                        Text("|", style: colorFFFFFFw40015),
-                        SizedBox(width: 5),
-                      ],
-                    ),
+                  child: Wrap(
+                    spacing: 5, // horizontal gap
+                    runSpacing: 5, // vertical gap
+                    children: branchList.map((branch) {
+                      return Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(branch, style: colorFF9800w40015),
+                          SizedBox(width: 5),
+                          Text("|", style: colorFFFFFFw40015),
+                          SizedBox(width: 5),
+                        ],
+                      );
+                    }).toList(),
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 40),
               ],
             ),
           ),

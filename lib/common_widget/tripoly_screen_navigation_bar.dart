@@ -38,8 +38,6 @@ class _TripolyScreenNavigationBarState extends State<TripolyScreenNavigationBar>
               color: NavController.to.selectedIndex.value == 1 ? Color(0xFFFF9800) : Colors.black,
             ),
           ),
-          //activeColorPrimary: Color(0xFFFF9800),
-          // inactiveColorPrimary: Colors.black,
         ),
       ];
     }
@@ -63,8 +61,6 @@ class _TripolyScreenNavigationBarState extends State<TripolyScreenNavigationBar>
         decoration: NavBarDecoration(
           colorBehindNavBar: colorFFFFFF,
           border: Border(top: BorderSide(color: colorFF9800)),
-          //borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
-          //boxShadow: [BoxShadow(color: colorF8D691, blurRadius: 10, offset: Offset(0, -1))],
         ),
       ),
     );

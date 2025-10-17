@@ -138,7 +138,7 @@ class _BuildingSiteNavigationBarState extends State<BuildingSiteNavigationBar> {
                     onPressed: () {
                       Get.back();
                     },
-                    child: Text("Back", style: colorFF9800w60020),
+                    child: Text("Back", style: colorFF9800w40015),
                   ),
                 ],
               ),
@@ -163,7 +163,7 @@ class _BuildingSiteNavigationBarState extends State<BuildingSiteNavigationBar> {
           icon: Obx(
             () => Image.asset(
               "assets/icon/gallery.png",
-              scale: NavController.to.selectedIndex.value == 2 ? 4 : 5,
+              scale: NavController.to.selectedIndex.value == 2 ? 5 : 6,
               color: NavController.to.selectedIndex.value == 2 ? Color(0xFFFF9800) : Colors.black,
             ),
           ),
@@ -178,10 +178,13 @@ class _BuildingSiteNavigationBarState extends State<BuildingSiteNavigationBar> {
         ),
         PersistentBottomNavBarItem(
           icon: Obx(
-            () => Image.asset(
-              "assets/icon/plan.png",
-              scale: NavController.to.selectedIndex.value == 3 ? 3 : 4,
-              color: NavController.to.selectedIndex.value == 3 ? Color(0xFFFF9800) : Colors.black,
+            () => Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Image.asset(
+                "assets/icon/plan.png",
+                scale: NavController.to.selectedIndex.value == 3 ? 4 : 5,
+                color: NavController.to.selectedIndex.value == 3 ? Color(0xFFFF9800) : Colors.black,
+              ),
             ),
           ),
           onPressed: (context) async {
