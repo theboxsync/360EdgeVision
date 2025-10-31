@@ -1,7 +1,7 @@
 class HotspotPosition {
   final String? id;
-  final double? x; // percentage (0–100)
-  final double? y; // percentage (0–100)
+  final double? x; // percentage
+  final double? y; // percentage
   final String? linkedImageId;
 
   HotspotPosition({this.id, this.x, this.y, this.linkedImageId});

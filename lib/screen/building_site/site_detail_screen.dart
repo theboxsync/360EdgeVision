@@ -485,6 +485,7 @@ class _SiteDetailScreenState extends State<SiteDetailScreen> {
                                               imageUrl: BuildingSiteController.to.buildingSiteData.value.amenities?[index].icon ?? "",
                                             ),
                                             AutoSizeText(
+                                              textAlign: TextAlign.center,
                                               BuildingSiteController.to.buildingSiteData.value.amenities?[index].name ?? "",
                                               style: color000000w40015,
                                               maxLines: 2,
@@ -493,6 +494,7 @@ class _SiteDetailScreenState extends State<SiteDetailScreen> {
                                         );
                                       },
                                     ),
+                                    SizedBox(height: 20),
                                     if (BuildingSiteController.to.buildingSiteData.value.amenities!.length > initialCount)
                                       GestureDetector(
                                         onTap: () => BuildingSiteController.to.siteFeaturesAll.toggle(),

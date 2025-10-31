@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       duration: const Duration(milliseconds: 1500),
                     ),
                     RotateAnimatedText(
-                      '360EdgeVision by Tripoly Studio',
+                      '360EdgeVision \n by Tripoly Studio',
                       textAlign: TextAlign.center,
                       textStyle: colorFF9800w70030,
                       duration: const Duration(milliseconds: 2000),

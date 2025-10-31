@@ -25,18 +25,15 @@ class _TripolyScreenNavigationBarState extends State<TripolyScreenNavigationBar>
       return [
         PersistentBottomNavBarItem(
           icon: Obx(
-            () => Image.asset("assets/icon/home.png", scale: 5, color: NavController.to.selectedIndex.value == 0 ? Color(0xFFFF9800) : Colors.black),
+            () => Image.asset("assets/icon/home.png", scale: 3, color: NavController.to.selectedIndex.value == 0 ? Color(0xFFFF9800) : Colors.black),
           ),
           //activeColorPrimary: Color(0xFFFF9800),
           //inactiveColorPrimary: Colors.black,
         ),
         PersistentBottomNavBarItem(
           icon: Obx(
-            () => Image.asset(
-              "assets/icon/contect_us.png",
-              scale: 5,
-              color: NavController.to.selectedIndex.value == 1 ? Color(0xFFFF9800) : Colors.black,
-            ),
+            () =>
+                Image.asset("assets/icon/support.png", scale: 3, color: NavController.to.selectedIndex.value == 1 ? Color(0xFFFF9800) : Colors.black),
           ),
         ),
       ];

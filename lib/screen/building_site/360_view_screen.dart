@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui' as ui;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:panorama_viewer/panorama_viewer.dart';
 import 'package:tripolystudionew/controller/360_view_controller.dart';
+import 'package:tripolystudionew/models/plan_hotspot_model.dart';
 import 'package:tripolystudionew/screen/building_site/vr_screen.dart';
 import 'package:tripolystudionew/utility/colors.dart';
 import 'package:tripolystudionew/utility/text_style.dart';
@@ -26,10 +28,25 @@ class _PanoramaScreenState extends State<PanoramaScreen> {
   final InteriorController interiorController = InteriorController();
   final BuildingSiteController buildingSiteController = Get.put(BuildingSiteController());
   final ViewController viewController = Get.put(ViewController());
+  ui.Image? _image;
+  String? imageUrl;
+
+  Future<void> _loadImage(ImageProvider provider) async {
+    final completer = Completer<ui.Image>();
+    final stream = provider.resolve(const ImageConfiguration());
+    late final ImageStreamListener listener;
+    listener = ImageStreamListener((ImageInfo info, bool _) {
+      completer.complete(info.image);
+      stream.removeListener(listener);
+    });
+    stream.addListener(listener);
+
+    final img = await completer.future;
+    setState(() => _image = img);
+  }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _checkOrientation();
@@ -38,14 +55,21 @@ class _PanoramaScreenState extends State<PanoramaScreen> {
   }
 
   _getData() async {
+    print(widget.collection?.collectionId);
     await ViewController.to.getPlanApiCall({"collection_id": widget.collection?.collectionId});
+    imageUrl = ViewController.to.getPlanData.value.image;
+    print("Image URL: $imageUrl");
+
     ViewController.to.imageUrl.value = widget.collection?.image?.imagePath ?? "";
+
     await ViewController.to.getHotspotApiCall(widget.collection);
     await ViewController.to.getSiteMusicApiCall(
       widget.collection?.image?.userId.toString(),
       widget.collection?.image?.id,
       widget.collection?.projectId ?? "",
     );
+
+    _loadImage(NetworkImage(imageUrl.toString()));
   }
 
   void _checkOrientation() {
@@ -135,6 +159,7 @@ class _PanoramaScreenState extends State<PanoramaScreen> {
                             child: const Center(child: CircularProgressIndicator(color: color000000)),
                           );
                         }
+
                         return PanoramaViewer(
                           animSpeed: 1.0,
                           animReverse: true,
@@ -145,6 +170,7 @@ class _PanoramaScreenState extends State<PanoramaScreen> {
                               longitude: data.yaw ?? 0.0,
                               widget: GestureDetector(
                                 onTap: () async {
+                                  print(widget.collection?.projectId ?? "");
                                   ViewController.to.getHotspotImageApiCall(
                                     widget.collection?.collectionId,
                                     data.linkedImageId.toString(),
@@ -175,7 +201,6 @@ class _PanoramaScreenState extends State<PanoramaScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
                         children: [
                           GestureDetector(
                             onTap: () {
@@ -205,7 +230,14 @@ class _PanoramaScreenState extends State<PanoramaScreen> {
                                   ),
                           ),
                           GestureDetector(
-                            onTap: () async {},
+                            onTap: () async {
+                              await ViewController.to.getPlanHotspotApiCall((ViewController.to.getPlanData.value.planId ?? "").toString());
+                              final hotspots = ViewController.to.getPlanHotspotData.value
+                                  .map((e) => PlanHotspotModel(id: e.id, x: e.x, y: e.y, linkedImageId: e.linkedImageId))
+                                  .toList();
+
+                              showPlanWithHotspots(context, imageUrl.toString(), hotspots);
+                            },
                             child: Image.asset("assets/icon/building-plan.png", color: colorFFFFFF, scale: 3),
                           ),
                         ],
@@ -220,5 +252,142 @@ class _PanoramaScreenState extends State<PanoramaScreen> {
         );
       }),
     );
+  }
+
+  void showPlanWithHotspots(BuildContext context, String imageUrl, List<PlanHotspotModel> hotspots) async {
+    if (_image == null) return;
+
+    final imageAspect = _image!.width / _image!.height;
+
+    showDialog(
+      context: context,
+      useSafeArea: false,
+      barrierDismissible: true,
+      builder: (context) {
+        final TransformationController _controller = TransformationController();
+
+        return Center(
+          child: AspectRatio(
+            aspectRatio: imageAspect,
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final size = Size(constraints.maxWidth, constraints.maxHeight);
+                final imageAspect = _image!.width / _image!.height;
+                final widgetAspect = size.width / size.height;
+
+                late Rect dst;
+                if (imageAspect > widgetAspect) {
+                  final renderWidth = size.width;
+                  final renderHeight = renderWidth / imageAspect;
+                  final dy = (size.height - renderHeight) / 2;
+                  dst = Rect.fromLTWH(0, dy, renderWidth, renderHeight);
+                } else {
+                  final renderHeight = size.height;
+                  final renderWidth = renderHeight * imageAspect;
+                  final dx = (size.width - renderWidth) / 2;
+                  dst = Rect.fromLTWH(dx, 0, renderWidth, renderHeight);
+                }
+
+                return GestureDetector(
+                  onTapUp: (details) {
+                    final tapLocal = _controller.toScene(details.localPosition);
+
+                    const double tapRadius = 20.0;
+
+                    for (final spot in hotspots) {
+                      final dx = dst.left + dst.width * ((spot.x ?? 0.0) / 100.0);
+                      final dy = dst.top + dst.height * ((spot.y ?? 0.0) / 100.0);
+                      final hotspotOffset = Offset(dx, dy);
+
+                      if ((tapLocal - hotspotOffset).distance <= tapRadius) {
+                        ViewController.to.getHotspotImageApiCall(
+                          widget.collection?.collectionId,
+                          spot.linkedImageId,
+                          widget.collection?.projectId ?? "",
+                        );
+                        Get.back();
+                        debugPrint("Hotspot tapped: ${spot.id}");
+                        break;
+                      }
+                    }
+                  },
+                  child: InteractiveViewer(
+                    transformationController: _controller,
+                    minScale: 1.0,
+                    maxScale: 5.0,
+                    panEnabled: true,
+                    scaleEnabled: true,
+                    child: CustomPaint(
+                      painter: _ImageHotspotPainter(image: _image!, hotspots: hotspots),
+                      size: const Size(double.infinity, double.infinity),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _ImageHotspotPainter extends CustomPainter {
+  final ui.Image image;
+  final List<PlanHotspotModel> hotspots;
+
+  _ImageHotspotPainter({required this.image, required this.hotspots});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint();
+    final circlePaint = Paint()..color = Colors.redAccent;
+
+    final imageAspect = image.width / image.height;
+    final widgetAspect = size.width / size.height;
+
+    late Rect dst;
+    if (imageAspect > widgetAspect) {
+      final renderWidth = size.width;
+      final renderHeight = renderWidth / imageAspect;
+      final dy = (size.height - renderHeight) / 2;
+      dst = Rect.fromLTWH(0, dy, renderWidth, renderHeight);
+    } else {
+      final renderHeight = size.height;
+      final renderWidth = renderHeight * imageAspect;
+      final dx = (size.width - renderWidth) / 2;
+      dst = Rect.fromLTWH(dx, 0, renderWidth, renderHeight);
+    }
+
+    final src = Rect.fromLTWH(0, 0, image.width.toDouble(), image.height.toDouble());
+    canvas.drawImageRect(image, src, dst, paint);
+
+    final hotspotOffsets = hotspots.map((spot) {
+      final dx = dst.left + dst.width * ((spot.x ?? 0.0) / 100.0);
+      final dy = dst.top + dst.height * ((spot.y ?? 0.0) / 100.0);
+      return {'offset': Offset(dx, dy), 'id': spot.id};
+    }).toList();
+
+    for (final spotData in hotspotOffsets) {
+      final offset = spotData['offset'] as Offset;
+      final id = spotData['id']?.toString() ?? '';
+
+      canvas.drawCircle(offset, 6.0, circlePaint);
+
+      final tp = TextPainter(
+        text: TextSpan(
+          text: id,
+          style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
+        ),
+        textDirection: TextDirection.ltr,
+      );
+      tp.layout();
+      tp.paint(canvas, Offset(offset.dx - tp.width / 2, offset.dy - 20));
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _ImageHotspotPainter oldDelegate) {
+    return oldDelegate.image != image || oldDelegate.hotspots != hotspots;
   }
 }

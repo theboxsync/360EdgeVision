@@ -1,13 +1,3 @@
-// To parse this JSON data, do
-//
-//     final hotspotModel = hotspotModelFromJson(jsonString);
-
-import 'dart:convert';
-
-List<HotspotModel> hotspotModelFromJson(String str) => List<HotspotModel>.from(json.decode(str).map((x) => HotspotModel.fromJson(x)));
-
-String hotspotModelToJson(List<HotspotModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
 class HotspotModel {
   String? hotspotId;
   double? pitch;

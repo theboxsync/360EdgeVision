@@ -49,11 +49,7 @@ class _BuildingSiteNavigationBarState extends State<BuildingSiteNavigationBar> {
             // await BuildingSiteController.to.getBuildingSiteApiCall(widget.projectDetails?.projectId);
           },
           icon: Obx(
-            () => Image.asset(
-              "assets/icon/home.png",
-              scale: NavController.to.selectedIndex.value == 0 ? 4 : 5,
-              color: NavController.to.selectedIndex.value == 0 ? Color(0xFFFF9800) : Colors.black,
-            ),
+            () => Image.asset("assets/icon/home.png", scale: 3, color: NavController.to.selectedIndex.value == 0 ? Color(0xFFFF9800) : Colors.black),
           ),
 
           //activeColorPrimary: Color(0xFFFF9800),
@@ -149,11 +145,8 @@ class _BuildingSiteNavigationBarState extends State<BuildingSiteNavigationBar> {
             }
           },
           icon: Obx(
-            () => Image.asset(
-              "assets/icon/building.png",
-              scale: NavController.to.selectedIndex.value == 1 ? 4 : 5,
-              color: NavController.to.selectedIndex.value == 1 ? Color(0xFFFF9800) : Colors.black,
-            ),
+            () =>
+                Image.asset("assets/icon/3d-view.png", scale: 3, color: NavController.to.selectedIndex.value == 1 ? Color(0xFFFF9800) : Colors.black),
           ),
 
           //activeColorPrimary: Color(0xFFFF9800),
@@ -161,11 +154,8 @@ class _BuildingSiteNavigationBarState extends State<BuildingSiteNavigationBar> {
         ),
         PersistentBottomNavBarItem(
           icon: Obx(
-            () => Image.asset(
-              "assets/icon/gallery.png",
-              scale: NavController.to.selectedIndex.value == 2 ? 5 : 6,
-              color: NavController.to.selectedIndex.value == 2 ? Color(0xFFFF9800) : Colors.black,
-            ),
+            () =>
+                Image.asset("assets/icon/gallery.png", scale: 3, color: NavController.to.selectedIndex.value == 2 ? Color(0xFFFF9800) : Colors.black),
           ),
           onPressed: (context) async {
             NavController.to.selectedIndex.value = 2;
@@ -178,14 +168,7 @@ class _BuildingSiteNavigationBarState extends State<BuildingSiteNavigationBar> {
         ),
         PersistentBottomNavBarItem(
           icon: Obx(
-            () => Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: Image.asset(
-                "assets/icon/plan.png",
-                scale: NavController.to.selectedIndex.value == 3 ? 4 : 5,
-                color: NavController.to.selectedIndex.value == 3 ? Color(0xFFFF9800) : Colors.black,
-              ),
-            ),
+            () => Image.asset("assets/icon/plan.png", scale: 3, color: NavController.to.selectedIndex.value == 3 ? Color(0xFFFF9800) : Colors.black),
           ),
           onPressed: (context) async {
             NavController.to.selectedIndex.value = 3;

@@ -18,7 +18,6 @@ class TripolyStudioScreen extends StatefulWidget {
 
 class _TripolyStudioScreenState extends State<TripolyStudioScreen> {
   final SiteProjectController controllerX = Get.put(SiteProjectController());
-  //final List<String> images = ['assets/images/Night_CP.jpg', 'assets/images/Night_CP.jpg', 'assets/images/Night_CP.jpg'];
   final CarouselSliderController _carouselController = CarouselSliderController();
 
   @override
@@ -39,7 +38,7 @@ class _TripolyStudioScreenState extends State<TripolyStudioScreen> {
       appBar: AppBar(
         backgroundColor: colorFFFFFF,
         leading: SafeArea(
-          child: Padding(padding: const EdgeInsets.only(left: 10, top: 5), child: Image.asset("assets/icon/logo_black.png", scale: 2)),
+          child: Padding(padding: const EdgeInsets.only(left: 10, top: 30), child: Image.asset("assets/icon/logo_black.png", scale: 2)),
         ),
         leadingWidth: 170,
       ),

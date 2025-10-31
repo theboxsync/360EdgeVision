@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:get/get.dart';
-import 'package:tripolystudionew/common_widget/hotspot_class.dart';
 import 'package:tripolystudionew/models/interior_model.dart';
 import 'package:tripolystudionew/models/music_model.dart';
 
@@ -12,6 +11,7 @@ import '../api_call/api_service.dart';
 import '../models/hotspot_image_model.dart';
 import '../models/hotspot_model.dart';
 import '../models/plan_fatch_model.dart';
+import '../models/plan_hotspot_model.dart';
 
 class ViewController extends GetxController {
   static ViewController get to => Get.find();
@@ -101,8 +101,7 @@ class ViewController extends GetxController {
   }
 
   RxBool getPlanHotspotLoader = false.obs;
-  final RxList<HotspotModel> getPlanHotspotData = <HotspotModel>[].obs;
-  final RxList<HotspotPosition> getPlanHotspotDataList = <HotspotPosition>[].obs;
+  final RxList<PlanHotspotModel> getPlanHotspotData = <PlanHotspotModel>[].obs;
 
   getPlanHotspotApiCall(String? planId) async {
     await apiServiceCall(
@@ -111,8 +110,8 @@ class ViewController extends GetxController {
       success: (dio.Response<dynamic> response) {
         print("Success");
         print(response.data);
-        getPlanHotspotData.value = (jsonDecode(response.data) as List).map((e) => HotspotModel.fromJson(e)).toList();
-        print(getPlanHotspotData);
+        getPlanHotspotData.value = (jsonDecode(response.data) as List).map((e) => PlanHotspotModel.fromJson(e)).toList();
+        print(getPlanHotspotData.map((e) => e.x).toList());
         print("hello.........");
       },
       error: (dio.Response<dynamic> response) {},

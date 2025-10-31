@@ -26,3 +26,4 @@ const colorFFFFFFw40015 = TextStyle(color: Color(0xFFFFFFFF), fontWeight: FontWe
 const colorFF9800w40015 = TextStyle(color: Color(0xFFFF9800), fontWeight: FontWeight.w400, fontSize: 15, fontFamily: "Outfit");
 const color808080w40015 = TextStyle(color: Color(0xFF808080), fontWeight: FontWeight.w400, fontSize: 15, fontFamily: "Outfit");
 const color000000w50012 = TextStyle(color: Color(0xFF000000), fontWeight: FontWeight.w500, fontSize: 12, letterSpacing: 2, fontFamily: "Outfit");
+const color000000w50015 = TextStyle(color: Color(0xFF000000), fontWeight: FontWeight.w500, fontSize: 15, letterSpacing: 2, fontFamily: "Outfit");

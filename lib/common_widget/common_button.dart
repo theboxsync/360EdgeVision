@@ -78,10 +78,10 @@ class _CommonButtonState extends State<CommonButton> {
             child: widget.isLoading
                 ? SizedBox(height: 20, child: SpinKitThreeBounce(color: widget.spinColor ?? color000000, size: 30.0))
                 : Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(widget.title, style: widget.style ?? color000000w50012),
-                      const SizedBox(width: 10),
+                      SizedBox(width: 30),
+                      Text(widget.title, style: widget.style ?? color000000w50015),
                       widget.isArrow == true
                           ? const SizedBox()
                           : Image.asset("assets/icon/arrow_right.png", scale: 1, color: widget.iconColor ?? color000000),
