@@ -25,8 +25,13 @@ class _BuildingPlanScreenState extends State<BuildingPlanScreen> {
   @override
   void initState() {
     super.initState();
+    // _getData();
     imageUrls = (PlanController.to.planData.value.plan?.map((e) => e.imagePath.toString()).toList()) ?? [];
     print(imageUrls);
+  }
+
+  _getData() async {
+    await PlanController.to.getPlanApiCall(widget.projectDetails?.projectId);
   }
 
   @override

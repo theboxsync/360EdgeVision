@@ -26,8 +26,13 @@ class _GalleryScreenState extends State<GalleryScreen> {
   @override
   void initState() {
     super.initState();
+    //_getData();
     imageUrls = (GalleryController.to.galleryData.value.data?.map((e) => e.path.toString()).toList()) ?? [];
     print(imageUrls);
+  }
+
+  _getData() async {
+    await GalleryController.to.getGalleryApiCall(widget.projectDetails?.projectId);
   }
 
   @override
